@@ -1,12 +1,13 @@
 import java.util.Scanner;
 
-public class ThriceTurn {
+public class ThriceSimulation {
 
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 
-		
-		for (int i = 0; i <= 1000; i++) {
+		double sumTally = 0.0;
+		double totalRolls = 1000.0;
+		for (int i = 0; i <= totalRolls; i++) {
 			int diceOne = 0;
 			int diceTwo = 1;
 			int diceThree = 2;
@@ -16,11 +17,11 @@ public class ThriceTurn {
 			while (diceOne != diceTwo || diceTwo != diceThree || diceOne != diceThree) {
 
 				diceOne = (int)((Math.random() * 6) + 1);
-				System.out.println("Dice one: " + diceOne);
+				//System.out.println("Dice one: " + diceOne);
 				diceTwo = (int)((Math.random() * 6) + 1);
-				System.out.println("Dice two: " + diceTwo);
+				//System.out.println("Dice two: " + diceTwo);
 				diceThree = (int)((Math.random() * 6) + 1);
-				System.out.println("Dice three: " + diceThree);
+				//SSystem.out.println("Dice three: " + diceThree);
 				int value = diceOne + diceTwo + diceThree;
 
 				if (diceOne == diceTwo && diceTwo == diceThree && diceOne == diceThree) {
@@ -34,59 +35,63 @@ public class ThriceTurn {
 				
 
 				rollNum++;
-				System.out.println("Tally: " + tally);
+				//System.out.println("Tally: " + tally);
 
 			}
-			System.out.println("Triplet Worth: " + firstTripletWorth + "\n");
+			//System.out.println("Triplet Worth: " + firstTripletWorth + "\n");
 
-			for (int i = 0; i <= firstTripletWorth; i++) {
+			for (int j = 0; j <= firstTripletWorth; j++) {
 				diceOne = (int)((Math.random() * 6) + 1);
-				System.out.println("Dice one: " + diceOne);
+				//System.out.println("Dice one: " + diceOne);
 				diceTwo = (int)((Math.random() * 6) + 1);
-				System.out.println("Dice two: " + diceTwo);
+				//System.out.println("Dice two: " + diceTwo);
 				diceThree = (int)((Math.random() * 6) + 1);
-				System.out.println("Dice three: " + diceThree);
+				//System.out.println("Dice three: " + diceThree);
 				int value = diceOne * diceTwo * diceThree;
 
 				tally += value;
-				System.out.println("Tally: " + tally);
+				//System.out.println("Tally: " + tally);
 			}
 
-			System.out.println("Roll or Retire: ");
-			String gamble = scan.nextLine();
 
 			int finalTally = 0;
 			int secondTripletWorth = 0;
 			rollNum = 0;
-			if (gamble.equals("Roll") || gamble.equals("roll")) {
-				while (diceOne != diceTwo || diceTwo != diceThree || diceOne != diceThree) {
-					tally += Math.pow(3, rollNum);
+			while (diceOne != diceTwo || diceTwo != diceThree || diceOne != diceThree) {
+				tally += Math.pow(3, rollNum);
 
-					diceOne = (int)((Math.random() * 6) + 1);
-					System.out.println("Dice one: " + diceOne);
-					diceTwo = (int)((Math.random() * 6) + 1);
-					System.out.println("Dice two: " + diceTwo);
-					diceThree = (int)((Math.random() * 6) + 1);
-					System.out.println("Dice three: " + diceThree);
-					int value = diceOne + diceTwo + diceThree;
+				diceOne = (int)((Math.random() * 6) + 1);
+				//System.out.println("Dice one: " + diceOne);
+				diceTwo = (int)((Math.random() * 6) + 1);
+				//System.out.println("Dice two: " + diceTwo);
+				diceThree = (int)((Math.random() * 6) + 1);
+				//System.out.println("Dice three: " + diceThree);
+				int value = diceOne + diceTwo + diceThree;
 
-					if (diceOne == diceTwo && diceTwo == diceThree && diceOne == diceThree) {
-						secondTripletWorth = value;
-						if (secondTripletWorth == firstTripletWorth) {
-							finalTally = tally * 3;
-						} else {
-							finalTally = secondTripletWorth;
-						}
-					} 
+				if (diceOne == diceTwo && diceTwo == diceThree && diceOne == diceThree) {
+					secondTripletWorth = value;
+					if (secondTripletWorth == firstTripletWorth) {
+						finalTally = tally * 3;
+					} else {
+						finalTally = secondTripletWorth;
+					}
+				} 
 
-					rollNum++;
-				}
-			} else if (gamble.equals("Retire") || gamble.equals("retire")) {
-				finalTally = tally;
+				rollNum++;
 			}
+	
 			
-			System.out.println("Final Tally: " + finalTally);
+			sumTally += finalTally;
+			//System.out.println(finalTally);
+			//System.out.println("NEW TURN");
 		}
+
+
+		double averageTally = sumTally / totalRolls;
+		System.out.println("Sum of Tallys: " + sumTally);
+		System.out.println("totalRolls: " + totalRolls);
+		System.out.println("Average score: " + averageTally);
+
 	}
 
 }
