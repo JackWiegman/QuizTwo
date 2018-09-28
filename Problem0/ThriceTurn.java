@@ -11,7 +11,7 @@ public class ThriceTurn {
 		int diceThree = 2;
 		int firstTripletWorth = 0;
 		int rollNum = 1;
-		int tally = 0;
+		long tally = 0;
 		while (diceOne != diceTwo || diceTwo != diceThree || diceOne != diceThree) {
 
 			diceOne = (int)((Math.random() * 6) + 1);
@@ -54,7 +54,7 @@ public class ThriceTurn {
 		System.out.println("Roll or Retire: ");
 		String gamble = scan.nextLine();
 
-		int finalTally = 0;
+		long finalTally = 0;
 		int secondTripletWorth = 0;
 		rollNum = 0;
 		if (gamble.equals("Roll") || gamble.equals("roll")) {
