@@ -14,8 +14,6 @@ public class SimpleCipher {
 			char letter = message.charAt(i);
 			int letterValue = (int) letter;
 			int chipherValue = letterValue + shift;
-			System.out.println(letterValue);
-			System.out.println(chipherValue);
 
 			if (chipherValue > 122) {
 				chipherValue = (chipherValue - 122) + 97;
